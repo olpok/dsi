@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Dsi!
+{% endblock %}
+
+{% block body %}
+
+
+	<h1>Hello
+		{{ controller_name }}!
+	</h1>
+	<h3>{{server.name}}</h3>
+
+	{{form_start(form)}}
+
+	{{form_row(form.name)}}
+	<h4>Logiciels installés sur ce serveur</h4>
+
+	<button class="btn-primary">Modifier</button>
+
+	{{form_end(form)}}
+
+
+{% endblock %}

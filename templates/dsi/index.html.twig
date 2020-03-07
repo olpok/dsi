@@ -1,11 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Dsi!{% endblock %}
+{% block title %}Hello Dsi!
+{% endblock %}
 
 {% block body %}
 
-<h1>Liste de serveurs</h1>
+	<h1>Liste de serveurs</h1>
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			{{message}}
+		</div>
+	{% endfor %}
+
+	<section class="serveurs">
+
+		{% for server in servers %}
+			<h4>{{server.name}}</h4>
+			<a href="{{ path('dsi_show', {id:server.id}) }}" class="btn btn-secondary">Editer</a>
+			<form method="post" action="{{ path('dsi_delete', {id:server.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes-vous vraiùent sûr?')">
 
 
+				<input type="hidden" name="_method" value="DELETE">
+				<button class="btn btn-danger">Supprimer</button>
+				<input type="hidden" name="token" value="{{ csrf_token('delete' ~ server.id ) }} ">
+			</form>
+		{% endfor %}
+
+	</section>
+
+	<div class="text-right">
+		<a href="{{path('dsi_new')}}" class="btn btn-primary">Créer un nouveau serveur</a>
+	</div>
 
 {% endblock %}
