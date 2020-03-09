@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SoftwareController!
+{% endblock %}
+
+{% block body %}
+
+<h1>Liste de logicies</h1>
+
+{% for message in app.flashes('success') %}
+	<div class="alert alert-success">
+		{{message}}
+	</div>
+{% endfor %}
+<<!--<sectionclass="serveurs">{%forsoftwareinsoftwares%}<h4>{{software.name}}</h4><ahref="{{path('software_show',{id:software.id})}}"class="btnbtn-secondary">Editer</a><formmethod="post"action="{{path('software_delete',{id:software.id})}}"style="display:inline-block"onsubmit="returnconfirm('Etes-vousvraiùentsûr?')"><inputtype="hidden"name="_method"value="DELETE"><buttonclass="btnbtn-danger">Supprimer</button><inputtype="hidden"name="token"value="{{csrf_token('delete'~software.id)}}"></form>{%endfor%}</section><divclass="text-right"><ahref="{{path('software_new')}}"class="btnbtn-primary">Ajouterunnouveaulogiciel</a></div>--> {% endblock %}
