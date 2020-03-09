@@ -17,6 +17,21 @@
 
 		{% for server in servers %}
 			<h4>{{server.name}}</h4>
+
+			{% if not server.softwares.empty %}
+				<p>
+					Ce serveur possède les logiciels  suivants :
+					{% for software in server.softwares %}
+						{{ software.name }}
+						{% if not loop.last %},
+						{% endif %}
+					{% endfor %}
+				</p>
+			{% else %}
+				<p>Ce serveur n'a pas encore de logiiciel
+				</p>
+			{% endif %}
+
 			<a href="{{ path('dsi_show', {id:server.id}) }}" class="btn btn-secondary">Editer</a>
 			<form method="post" action="{{ path('dsi_delete', {id:server.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes-vous vraiùent sûr?')">
 

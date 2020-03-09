@@ -1,20 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Dsi!
-{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
 
-
-	<h1>Hello
-		{{ controller_name }}!
-	</h1>
 	<h3>{{server.name}}</h3>
 
 	{{form_start(form)}}
 
 	{{form_row(form.name)}}
-	<h4>Logiciels installés sur ce serveur</h4>
+	<div class="software">
+
+		{% if not server.softwares.empty %}
+			<p>
+				{% for software in server.softwares %}
+					Ce serveur possède les logiciels suivants :{{ software.name }}
+					{% for version in software.versions %}
+						<div id="version">
+							<div class="version">
+								Les versions suivantes sont installées sur le
+								{{ software.name }}
+								:{{ version.number }}
+							</div>
+
+						</div>
+					{% endfor %}
+
+					{% if not loop.last %},
+					{% endif %}
+				{% endfor %}
+			</p>
+		{% else %}
+			<p>Ce serveur n'a pas encore de logiiciel
+			</p>
+		{% endif %}
+
+	</div>
+
 
 	<button class="btn-primary">Modifier</button>
 
